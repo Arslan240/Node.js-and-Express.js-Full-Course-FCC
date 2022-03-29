@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/Arslan240/Node.js-and-Express.js-Full-Course-FCC/issues"
   },
-  "homepage": "https://github.com/Arslan240/Node.js-and-Express.js-Full-Course-FCC#readme"
+  "homepage": "https://github.com/Arslan240/Node.js-and-Express.js-Full-Course-FCC#readme",
+  "dependencies": {
+    "express": "^4.17.3"
+  }
 }
