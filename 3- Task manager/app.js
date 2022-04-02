@@ -1,8 +1,10 @@
+require('dotenv').config()
 const express = require('express')
 const app = express()
 const tasks = require('./routes/tasks')
-
+const connectDB = require('./db/connect')
 // setting middleware, this middleware allows us to 
+app.use(express.static('./public'))
 app.use(express.json())
 
 app.get('/hello',(req,res) => {
@@ -20,6 +22,16 @@ app.use('/api/v1/tasks',tasks)
 // app.patch('/api/v1/tasks/:id')   - update task
 // app.delete('/api/v1/tasks/:id')   - delete task
 
-
 const port = 3000
-app.listen(port, console.log('server is listeneing on port ' + port))
+
+// this func will evoke connectDB function and because it returns a promise we can create start as async func
+const start = async () => {
+  try {
+    await connectDB(process.env.MONGO_URI) //if connection establishes then we run the server in the next line
+    app.listen(port, console.log('server is listeneing on port ' + port))
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+start()
