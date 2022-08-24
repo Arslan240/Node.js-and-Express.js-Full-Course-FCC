@@ -9,6 +9,7 @@ const {
   deleteProduct, 
   uploadImage,
 } = require('../controllers/productController')
+const {getSingleProductReviews} = require('../controllers/reviewController')
 
 // according to rest we create get All products and create a product on the root route.
 
@@ -24,6 +25,8 @@ router.route('/:id')
   .patch([authenticateUser,authorizePermissions('admin')],updateProduct)
   .delete([authenticateUser,authorizePermissions('admin')],deleteProduct)
 
+router.route('/:id/reviews')
+  .get(getSingleProductReviews)
 
 module.exports = router
 
